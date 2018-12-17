@@ -1,0 +1,19 @@
+{
+  "name": "jrpg",
+  "version": "1.0.0",
+  "description": "japanese rpg like app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frednava67/jrpg.git"
+  },
+  "author": "fred and nano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frednava67/jrpg/issues"
+  },
+  "homepage": "https://github.com/frednava67/jrpg#readme"
+}
