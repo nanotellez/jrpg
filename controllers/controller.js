@@ -1,35 +1,66 @@
-const Pet = require("../models/models");
+const Player = require("../models/models");
+const Monster = require("../models/models");
 
 module.exports = {
-    cbCreatePet: function(req,res){
-        console.log('Inside cbCreatePet()');
+    cbCreatePlayer: function(req,res){
+        console.log('Inside cbCreatePlayer()');
         console.log(req.body);
-        Pet.create(req.body)
+        Player.create(req.body)
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     },
-    cbGetPets: function(req,res){
-        Pet.find().sort({petType: 1})
+    cbGetPlayers: function(req,res){
+        Player.find().sort({PlayerType: 1})
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     },
-    cbGetPet: function(req,res){
-        Pet.findById({_id: req.params.id})
+    cbGetPlayer: function(req,res){
+        Player.findById({_id: req.params.id})
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     },
-    cbUpdatePet: function(req,res){
-        console.log('Inside cbUpdatePet()');
+    cbUpdatePlayer: function(req,res){
+        console.log('Inside cbUpdatePlayer()');
         console.log(req.body);
-        Pet.findOneAndUpdate({ _id: req.params.id }, req.body, {runValidators: true, context: 'query' })
+        Player.findOneAndUpdate({ _id: req.params.id }, req.body, {runValidators: true, context: 'query' })
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     },
-    cbRemovePet: function(req,res){
-        console.log('Inside cbRemovePet()');
+    cbRemovePlayer: function(req,res){
+        console.log('Inside cbRemovePlayer()');
         console.log(req.params.id);
-        Pet.findByIdAndRemove(req.params.id)
+        Player.findByIdAndRemove(req.params.id)
+            .then((data)=>res.json({message: "Success", data: data}))
+            .catch((err)=>res.json({message: "Error", err: err}))            
+    },
+
+    cbCreateMonster: function(req,res){
+        console.log('Inside cbCreateMonster()');
+        console.log(req.body);
+        Monster.create(req.body)
+            .then((data)=>res.json({message: "Success", data: data}))
+            .catch((err)=>res.json({message: "Error", err: err}))            
+    },
+    cbGetMonster: function(req,res){
+        Monster.findById({_id: req.params.id})
+            .then((data)=>res.json({message: "Success", data: data}))
+            .catch((err)=>res.json({message: "Error", err: err}))            
+    },
+    cbUpdateMonster: function(req,res){
+        console.log('Inside cbUpdateMonster()');
+        console.log(req.body);
+        Monster.findOneAndUpdate({ _id: req.params.id }, req.body, {runValidators: true, context: 'query' })
+            .then((data)=>res.json({message: "Success", data: data}))
+            .catch((err)=>res.json({message: "Error", err: err}))            
+    },
+    cbRemoveMonster: function(req,res){
+        console.log('Inside cbRemoveMonster()');
+        console.log(req.params.id);
+        Monster.findByIdAndRemove(req.params.id)
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     }
+
+
+
 }

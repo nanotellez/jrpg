@@ -1,13 +1,24 @@
 const controller = require("../controllers/controller");
 
 module.exports = function(app){
-    app.get('/api/pets', controller.cbGetPets)
-    app.get('/api/pets/:id', controller.cbGetPet)
+    // Players
+    app.get('/api/players', controller.cbGetPlayers)
+    app.get('/api/players/:id', controller.cbGetPlayers)
 
-    app.delete('/api/pets/:id', controller.cbRemovePet)
+    app.delete('/api/players/:id', controller.cbRemovePlayers)
     
-    app.post('/api/pets', controller.cbCreatePet)
+    app.post('/api/players', controller.cbCreatePlayers)
     
-    app.put('/api/pets/:id', controller.cbUpdatePet)
+    app.put('/api/players/:id', controller.cbUpdatePlayers)
+
+    // Monsters
+    app.get('/api/monsters', controller.cbGetMonsters)
+    app.get('/api/monsters/:id', controller.cbGetMonster)
+
+    app.delete('/api/monsters/:id', controller.cbRemoveMonster)
+    
+    app.post('/api/monsters', controller.cbCreateMonster)
+    
+    app.put('/api/monsters/:id', controller.cbUpdateMonster)
 }
 
