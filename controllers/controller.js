@@ -41,6 +41,11 @@ module.exports = {
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
     },
+    cbGetMonsters: function(req,res){
+        Monster.find()
+            .then((data)=>res.json({message: "Success", data: data}))
+            .catch((err)=>res.json({message: "Error", err: err}))            
+    },
     cbGetMonster: function(req,res){
         Monster.findById({_id: req.params.id})
             .then((data)=>res.json({message: "Success", data: data}))
