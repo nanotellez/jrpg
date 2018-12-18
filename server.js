@@ -6,9 +6,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static( __dirname + '/public/dist/public' ));
 
-// app.all("*", (req,res,next) => {
-//     res.sendFile(path.resolve("./public/dist/public/index.html"))
-// });
+app.all("*", (req,res,next) => {
+    res.sendFile(path.resolve("./public/dist/public/index.html"))
+});
 
 //your ejs configuratioins lines MUST come before your require("routes")(app)
 app.set("views", __dirname+"/views");

@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+body, html {
+    height: 200px;
+    margin: 0;
+}
+
+body {
+    background-image: url('./assets/fantasy-bg.png');
+    background-repeat: no-repeat;
+    background-color: #cccccc;
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: 250px;
+    height: 300px;
+}
+
+.blackborder{
+    border: 1px solid black;
+
+}
+
+.styledheader {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.styleddiv {
+    border: 1px solid lightslategray;
+    border-radius: 3px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: cornsilk;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.padleftzero {
+    padding-left: 0px;
+}
+
+.tablediv {
+    display: inline-block;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-left: -1px;
+}
+
+.blackborder {
+    border: 1px solid black;
+}
+
+.blackborder-right {
+    border-right: 1px solid black;
+}
+
+.blackborder-bottom {
+    border-bottom: 1px solid black;
+}
+
+.darkgraybg {
+    background-color: darkgray;
+}
+
+.graybg {
+    background-color: lightgray;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("./assets/fantasy-bg.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
