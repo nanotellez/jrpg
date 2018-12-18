@@ -1,0 +1,12 @@
+<div class="row">
+  <div *ngFor="let r of range">
+    <div id="griddiv">
+      <div *ngFor="let c of range" class="gridbox" [attr.id]="'div'+c+gridSize-r-1">
+        this is {{c}},{{r}}
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
