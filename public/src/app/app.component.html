@@ -15,25 +15,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script src="helper.js"></script>
-  <link rel="stylesheet" href="main-style.css" />
 </head>
 
 <body>
-  <div class="container-fluid justify-content-center">
-    <div class="row">
-      <div id="current-map" class="col-7 box rounded border border-light">
-        main page
-      </div>
-      <div class="side-items col-5">
-        <div id="world-map" class="box rounded border border-light">
-          <app-worldmap></app-worldmap>
-        </div>
-        <div id="world-chat" class="box rounded border border-light">
-          <!-- <app-worldchat></app-worldchat> -->
-        </div>
-      </div>
-    </div>
-  </div>
+  
+  <app-worldmap></app-worldmap>
 </body>
 
 </html>

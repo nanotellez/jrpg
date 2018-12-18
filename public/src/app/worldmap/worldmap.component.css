@@ -1,0 +1,78 @@
+#current-map-tile{
+    min-height: 700px;
+    padding: 10px 0;
+}
+
+#world-map-tile{
+    min-height: 420px;
+    padding: 5px 0;
+}
+
+
+#world-chat{
+    min-height: 300px;
+    margin-top: 10px;
+}
+
+.box{
+    border-width: 5px !important; 
+    background-color: darkolivegreen;
+}
+
+body {
+    background-color: darkslategray;
+}
+
+.container-fluid{
+    width: 95%;
+    padding: 5px
+}
+
+.gridbox-world {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border: 1px solid rgb(197, 196, 196);
+    background-color: white;
+}
+
+.gridbox {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(197, 196, 196);
+    background-color: white;
+}
+
+.view-b {
+    border-bottom: 1px solid magenta;
+}
+
+.view-t {
+    border-top: 1px solid magenta;
+}
+
+.view-l {
+    border-left: 1px solid magenta;
+}
+
+.view-r {
+    border-right: 1px solid magenta;
+}
+
+
+/* .selfoccupied {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    border: 1px solid black;
+}
+
+.otheroccupied {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border: 1px solid black;
+} */
