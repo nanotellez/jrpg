@@ -1,12 +1,33 @@
-<div class="row">
-  <div *ngFor="let r of range">
-    <div id="griddiv">
-      <div *ngFor="let c of range" class="gridbox" [attr.id]="'div'+c+gridSize-r-1">
-        this is {{c}},{{r}}
+<div class="container-fluid justify-content-center">
+  <div class="row">
+    <div id="current-map-tile" class="d-flex col-7 box rounded border border-light justify-content-center">
+      <div id="world-map">
+        <div *ngFor="let r of viewRange.r" class="row" id="griddiv">
+          <div *ngFor="let x of viewRange.x" class="gridbox" [attr.id]="'div-'+x+'-'+(viewportstart.y+9-r)">
+          </div>
+        </div>
       </div>
 
 
-    </div>
 
+    </div>
+    <div class="side-items col-5">
+      <div id="world-map-tile" class="d-flex box rounded border border-light justify-content-center">
+        <div id="world-map">
+          <div *ngFor="let r of range" class="row" id="griddiv">
+            <div *ngFor="let x of range" class="gridbox-world" [attr.id]="'div-'+x+'-'+(gridSize-r-1)" [ngClass]="{
+                'view-b': gridSize-r-1==viewportstart.y && x>=viewportstart.x && x<=viewportstart.x+10,
+                'view-t': gridSize-r-1==viewportstart.y+10 && x>=viewportstart.x && x<=viewportstart.x+10,
+                'view-l': x==viewportstart.x && gridSize-r-1>=viewportstart.y && gridSize-r-1<=viewportstart.y+10,
+                'view-r': x==viewportstart.x+10 && gridSize-r-1>=viewportstart.y && gridSize-r-1<=viewportstart.y+10
+              }">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="world-chat" class="box rounded border border-light">
+        <!-- <app-worldchat></app-worldchat> -->
+      </div>
+    </div>
   </div>
 </div>
