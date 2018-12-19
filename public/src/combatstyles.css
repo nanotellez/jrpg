@@ -1,0 +1,33 @@
+body {
+  background-color: black;
+}
+
+#monsterdiv {
+  background-image: url('./assets/combat-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#playerdiv {
+  background-image: url('./assets/combat-bg2.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#mstatsdiv {
+  padding: 10px;
+}
+
+#pstatsdiv {
+  padding: 10px;
+}
+
+.combattext {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.actionbutton {
+  width: 45%;
+}
