@@ -18,19 +18,23 @@ function drawViewport(old, newv ) {
         $(".div-" + x + "-" + newv.y).addClass('view-t');
         $(".div-" + x + "-" + (newv.y + 9)).addClass('view-b');
     }
+
     for (let y = newv.y; y < newv.y + 10; y++) {
         $(".div-" + newv.x + "-" + y).addClass('view-l');
         $(".div-" + (newv.x + 9) + "-" + y).addClass('view-r');
     }
+
     // remove old viewport from world map
     for (let x = old.x; x < old.x + 10; x++) {
         $(".div-" + x + "-" + old.y).removeClass('view-t');
         $(".div-" + x + "-" + (old.y + 9)).removeClass('view-b');
     }
+
     for (let y = old.y; y < old.y + 10; y++) {
         $(".div-" + old.x + "-" + y).removeClass('view-l');
         $(".div-" + (old.x + 9) + "-" + y).removeClass('view-r');
     }
+
     // render viewport on current map
     $("#current-map").html("");
     for (let y = newv.y; y < newv.y + 10; y++) {
@@ -115,6 +119,7 @@ $(document).ready(function () {
                 if (data.hash[idkeys[subject]].type == 1) {
                     $(".div-" + curx + "-" + cury).css({ 'background': 'gray', "background-image": "url('img/other.png')" });
                 } else if ((data.hash[idkeys[subject]].type < 0)) {
+                    console.log("subject::type", subject, data.hash[idkeys[subject]].type);
                     switch (data.hash[idkeys[subject]].type) {
                         case -1: // orc
                             $(".div-" + curx + "-"  + cury).css({ 'background': 'red', "background-image": "url('img/orc-head.png')" });
