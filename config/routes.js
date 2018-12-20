@@ -22,7 +22,8 @@ module.exports = function(app){
     app.put('/api/monsters/:id', controller.cbUpdateMonster)
 
     // World Map
-    app.get('/', controller.selection)
+    app.get('/', controller.intro)
+    app.get('/select', controller.selection)
     app.get('/world', controller.world)
     app.get('/combat', controller.combat)
 

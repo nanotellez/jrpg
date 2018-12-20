@@ -76,5 +76,8 @@ module.exports = {
     },
     combat: (req,res) => {
         res.render('combat');
+    },
+    intro: (req,res) => {
+        res.render('intro');
     }
 }
