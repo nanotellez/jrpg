@@ -1,11 +1,3 @@
-// socket.on('setbgcolorpink', function () {
-//     $("body").css('background-color', 'pink');
-// });
-
-// $("#greendiv").click(function(){
-//     socket.emit('setbgtogreen');
-// });
-
 var socketid = "";
 var selfx;
 var selfy;
@@ -47,16 +39,6 @@ function drawViewport(old, newv ) {
             $("#current-map > .r" + y).append('<div class="gridbox div-' + x + '-' + y + '"></div>')
         }
     }
-        
-    // $("#current-map").html('
-    //     <% for (var y = newv.y; y < newv.y+10; y++) { %>
-    //         <div class="row">
-    //             <% for (var x of viewRange.x) { %>
-    //                 <div class="gridbox div-<%=x%>-<%=y%>"></div>
-    //                 <% } %>
-    //                     </div>
-    //         <% } %>
-    // ')
 }
 
 function moveUp() {
@@ -98,16 +80,10 @@ $(document).ready(function () {
     socket.on('updategrid', function (data) {
         let idkeys = Object.keys(data.hash)
         resetGrid();
-        console.log('*******************************************************');
         for (subject = 0; subject < idkeys.length; subject++) {
             if (data.hash[idkeys[subject]].id == socketid) {
                 selfx = data.hash[idkeys[subject]].x;
                 selfy = data.hash[idkeys[subject]].y;
-                console.log("viewportstart.x==undefined", viewportstart.x == undefined)
-                console.log("selfx < viewportstart.x",selfx < viewportstart.x)
-                console.log("selfx > viewportstart.x + 9", selfx > viewportstart.x + 9)
-                console.log("selfy < viewportstart.y", selfy < viewportstart.y)
-                console.log("selfy > viewportstart.y + 9", selfy > viewportstart.y + 9)
                 if (viewportstart.x==undefined ||
                     selfx < viewportstart.x ||
                     selfx > viewportstart.x + 9 ||
