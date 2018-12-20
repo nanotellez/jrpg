@@ -20,5 +20,8 @@ module.exports = function(app){
     app.post('/api/monsters', controller.cbCreateMonster)
     
     app.put('/api/monsters/:id', controller.cbUpdateMonster)
+
+    // World Map
+    app.get('/world', controller.world)
 }
 
