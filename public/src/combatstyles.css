@@ -3,15 +3,23 @@ body {
 }
 
 #monsterdiv {
-  background-image: url('./assets/combat-bg.jpeg');
+  background-image: url('./assets/abyss.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
+#divimgmonster {
+  opacity: 1;
+}
+
 #playerdiv {
-  background-image: url('./assets/combat-bg2.jpeg');
+  background-image: url('./assets/abyss2.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+#divimgplayer {
+  opacity: 1;
 }
 
 #mstatsdiv {
@@ -30,4 +38,8 @@ body {
 
 .actionbutton {
   width: 45%;
+}
+
+.invisible {
+  display: none;
 }
