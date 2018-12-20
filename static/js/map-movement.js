@@ -69,6 +69,10 @@ function moveLeft() {
     return { x: selfx, y: selfy };
 }
 
+function enterCombat() {
+    location.href = '/combat';
+}
+
 $(document).ready(function () {
     var socket = io();
 
@@ -120,7 +124,7 @@ $(document).ready(function () {
             console.log('curx: ' + curx);
             console.log('cury: ' + cury);
             if (selfx == curx && selfy == cury) {
-                (data.hash[idkeys[subject]].type == 1) ? console.log(">>> player collision <<<") : console.log("<<< monster collision >>>")
+                (data.hash[idkeys[subject]].type == 1) ? console.log(">>> player collision <<<") : enterCombat();
             }
         }
     });

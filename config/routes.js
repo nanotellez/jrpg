@@ -6,9 +6,9 @@ module.exports = function(app){
     app.get('/api/players/:id', controller.cbGetPlayer)
 
     app.delete('/api/players/:id', controller.cbRemovePlayer)
-    
+
     app.post('/api/players', controller.cbCreatePlayer)
-    
+
     app.put('/api/players/:id', controller.cbUpdatePlayer)
 
     // Monsters
@@ -16,12 +16,16 @@ module.exports = function(app){
     app.get('/api/monsters/:id', controller.cbGetMonster)
 
     app.delete('/api/monsters/:id', controller.cbRemoveMonster)
-    
+
     app.post('/api/monsters', controller.cbCreateMonster)
-    
+
     app.put('/api/monsters/:id', controller.cbUpdateMonster)
 
     // World Map
+    app.get('/', controller.selection)
     app.get('/world', controller.world)
+    app.get('/combat', controller.combat)
+
+
 }
 

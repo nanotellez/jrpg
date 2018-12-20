@@ -14,13 +14,8 @@ app.use(express.static(path.join(__dirname + "/static")));
 
 app.set('view engine', 'ejs');
 
-
-
-
 // routes, using routes.js file
 require("./config/routes")(app);
-
-
 
 server.listen(8000, ()=>{
     console.log("Listening on port 8000")
@@ -28,10 +23,10 @@ server.listen(8000, ()=>{
 
 const io = require('socket.io')(server);
 
-
 var hash = {};
 var maxcoord = 49;
 var mincoord = 0;
+var worldmoves = 0;
 
 // initialize mobs
 hash[0] = { 'id': 0, 'x': 1, 'y': 1, 'type': -1 }; // orc
@@ -39,6 +34,10 @@ hash[1] = { 'id': 1, 'x': 1, 'y': 8, 'type': -2 }; // goblin
 hash[2] = { 'id': 2, 'x': 8, 'y': 1, 'type': -3 }; // ogre
 
 function calcMobMove(mob) {
+    worldmoves++;
+    if ((worldmoves%2)==0){ // only move every other time so players can catch you
+        return;
+    }
     dir = Math.floor(Math.random() * 4);
 
     switch (dir) {
