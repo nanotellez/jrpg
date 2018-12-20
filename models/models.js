@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose", { useNewUrlParser: true })
 const uniqueValidator = require('mongoose-unique-validator');
 
 mongoose.connect('mongodb://localhost/jrpgdb');

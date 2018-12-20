@@ -25,28 +25,34 @@ const io = require('socket.io')(server);
 
 var hash = {};
 var maxcoord = 49;
-var mincoord = 0;
 var worldmoves = 0;
+var chatlog = "";
 
 // initialize mobs
-hash[0] = { 'id': 0, 'x': 1, 'y': 1, 'type': -1 }; // orc
-hash[1] = { 'id': 1, 'x': 1, 'y': 8, 'type': -2 }; // goblin
-hash[2] = { 'id': 2, 'x': 8, 'y': 1, 'type': -3 }; // ogre
+hash[0] = { 'id': 0, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -1 }; // orc
+hash[1] = { 'id': 1, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -2 }; // goblin
+hash[2] = { 'id': 2, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -3 }; // ogre
+hash[3] = { 'id': 3, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -1 }; // orc
+hash[4] = { 'id': 4, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -2 }; // goblin
+hash[5] = { 'id': 5, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(Math.random() * maxcoord), 'type': -3 }; // ogre
+var mobSize = 6; // number of monsters
 
 function calcMobMove(mob) {
+    console.log ("calcMob for monster ", mob.id)
     worldmoves++;
     if ((worldmoves%2)==0){ // only move every other time so players can catch you
+        
         return;
     }
     dir = Math.floor(Math.random() * 4);
 
     switch (dir) {
-        case 0: //UP
+        case 0: // DOWN
             if (mob.y < maxcoord) {
                 mob.y++;
             }
             break;
-        case 1: // DOWN
+        case 1: // UP
             if (mob.y > 0) {
                 mob.y--;
             }
@@ -62,11 +68,15 @@ function calcMobMove(mob) {
             }
             break;
     }
-
+    console.log("moved monster ", mob.id);
+    console.log("new position: ", mob.x, mob.y);
 }
 
 io.on('connection', function (socket) {
     var thisid = socket.id;
+    var sockhandle = "";
+
+    //************ Map movement **********************
     socket.emit('pushsocketid', { id: thisid });
     startingX = Math.floor(Math.random() * maxcoord)
     startingY = Math.floor(Math.random() * maxcoord)
@@ -76,9 +86,10 @@ io.on('connection', function (socket) {
     io.emit('updategrid', { hash: hash });
 
     socket.on('playermove', function (data) {
-        calcMobMove(hash[0]);
-        calcMobMove(hash[1]);
-        calcMobMove(hash[2]);
+        for (let m=0; m<mobSize; m++){
+            calcMobMove(hash[m]);
+            console.log("monster: ", m)
+        }
         hash[thisid] = { 'id': thisid, 'x': data.x, 'y': data.y, 'type': 1 };
         io.emit('updategrid', { hash: hash });
     });
@@ -86,4 +97,26 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         delete hash[thisid];
     });
+    // *************************************************
+
+    // *****************Chat****************************
+    socket.on('announceentry', function (data) {
+        console.log("announceentry");
+        sockhandle = data.handle;
+        chatlog = chatlog + "<p>" + data.handle + " has entered the room."
+        io.emit('updatechatlog', { log: chatlog });
+    });
+
+    socket.on('newpost', function (data) {
+        console.log("newpost");
+        chatlog = chatlog + "<p>" + sockhandle + " says: " + data.msg;
+        io.emit('updatechatlog', { log: chatlog });
+    });
+
+    socket.on('disconnect', function () {
+        console.log("disconnect");
+        chatlog = chatlog + "<p>" + sockhandle + " has left the room.";
+        io.emit('updatechatlog', { log: chatlog });
+    });
+    // ***************************************************
 });

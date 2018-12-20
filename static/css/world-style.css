@@ -4,14 +4,21 @@
 }
 
 #world-map-tile{
-    min-height: 250px;
+    min-height: 225px;
     padding: 5px 0;
 }
 
 
 #world-chat{
-    min-height: 250px;
+    height: 290px;
     margin-top: 10px;
+    padding: 10px;
+}
+
+#chathistory{
+    height: 220px;
+    overflow-y: auto;
+    background-color: bisque;
 }
 
 .box{

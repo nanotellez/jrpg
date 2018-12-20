@@ -16,7 +16,7 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="css/world-style.css" />
     <script src="js/map-movement.js"></script>
-    <!-- <script src="helper.js"></script> -->
+    <script src="js/chat.js"></script>
 </head>
 
 <body>
@@ -50,7 +50,13 @@
                     </div>
                 </div>
                 <div id="world-chat" class="box rounded border border-light">
+                    <div id="chathistory" class="">
 
+                    </div>
+                    <div class="row col-11 justify-content-center">
+                        <input type="text" id="messagetext" class="form-control col-10"/>
+                        <button id="sendbtn" class="btn btn-secondary btn-block col-2">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
