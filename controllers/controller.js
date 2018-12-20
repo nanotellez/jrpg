@@ -64,8 +64,14 @@ module.exports = {
         Monster.findByIdAndRemove(req.params.id)
             .then((data)=>res.json({message: "Success", data: data}))
             .catch((err)=>res.json({message: "Error", err: err}))            
-    }
+    },
 
+    world: (req,res) => {
+        context = {
+            gridSize: 50,
+        }
+        res.render('worldMap', context);
+    }
 
 
 }

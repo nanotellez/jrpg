@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/frednava67/jrpg#readme",
   "dependencies": {
+    "@types/socket.io": "^2.1.2",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.0",
-    "mongoose-unique-validator": "^2.0.2"
+    "mongoose-unique-validator": "^2.0.2",
+    "socket.io": "^2.2.0"
   }
 }
