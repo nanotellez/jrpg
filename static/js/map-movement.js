@@ -5,8 +5,8 @@ const gridSize = 50;
 var viewportstart = {};
 
 function resetGrid() {
-    for (x = 0; x < gridSize - 1; x++) {
-        for (y = 0; y < gridSize - 1; y++) {
+    for (x = 0; x < gridSize; x++) {
+        for (y = 0; y < gridSize; y++) {
             $(".div-" + x + "-" + y).css('background', 'white');
         }
     }
@@ -42,14 +42,14 @@ function drawViewport(old, newv ) {
 }
 
 function moveUp() {
-    if (selfy < gridSize - 1) {
+    if (selfy >0) {
         selfy--;
     }
     return { x: selfx, y: selfy };
 }
 
 function moveDown() {
-    if (selfy > 0) {
+    if (selfy < gridSize - 1) {
         selfy++;
     }
     return { x: selfx, y: selfy };
