@@ -70,7 +70,16 @@ function moveLeft() {
 }
 
 function enterCombat() {
-    location.href = '/combat';
+    myVar = setTimeout(function(){
+        var combat = new Audio("./media/combatlaunch.mp3") ;
+        combat.play();
+        myVar = setTimeout(function(){
+            $("body").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+            myVar = setTimeout(function(){
+                location.href = '/combat';
+            }, 2000);
+        }, 100);
+    }, 100);
 }
 
 $(document).ready(function () {
