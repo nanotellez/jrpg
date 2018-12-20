@@ -2,7 +2,7 @@ var socketid = "";
 var selfx;
 var selfy;
 const gridSize = 50;
-var viewportstart = {}
+var viewportstart = {};
 
 function resetGrid() {
     for (x = 0; x < gridSize - 1; x++) {
@@ -34,7 +34,7 @@ function drawViewport(old, newv ) {
     // render viewport on current map
     $("#current-map").html("");
     for (let y = newv.y; y < newv.y + 10; y++) {
-        $("#current-map").append('<div class="row r' + y +'" ></div>')
+        $("#current-map").append('<div class="row r' + y +'" ></div>');
         for (let x = newv.x; x<newv.x+10; x++){
             $("#current-map > .r" + y).append('<div class="gridbox div-' + x + '-' + y + '"></div>')
         }
