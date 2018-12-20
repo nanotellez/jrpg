@@ -98,11 +98,17 @@ $(document).ready(function () {
     socket.on('updategrid', function (data) {
         let idkeys = Object.keys(data.hash)
         resetGrid();
+        console.log('*******************************************************');
         for (subject = 0; subject < idkeys.length; subject++) {
             if (data.hash[idkeys[subject]].id == socketid) {
                 selfx = data.hash[idkeys[subject]].x;
                 selfy = data.hash[idkeys[subject]].y;
-                if (!viewportstart.x ||
+                console.log("viewportstart.x==undefined", viewportstart.x == undefined)
+                console.log("selfx < viewportstart.x",selfx < viewportstart.x)
+                console.log("selfx > viewportstart.x + 9", selfx > viewportstart.x + 9)
+                console.log("selfy < viewportstart.y", selfy < viewportstart.y)
+                console.log("selfy > viewportstart.y + 9", selfy > viewportstart.y + 9)
+                if (viewportstart.x==undefined ||
                     selfx < viewportstart.x ||
                     selfx > viewportstart.x + 9 ||
                     selfy < viewportstart.y ||
@@ -110,6 +116,7 @@ $(document).ready(function () {
                 ) {
                     let oldview = viewportstart;
                     viewportstart = { x: Math.floor(selfx / 10) * 10, y: Math.floor(selfy / 10) * 10 };
+                    console.log("changing viewport to ", viewportstart.x, viewportstart.y)
                     drawViewport(oldview, viewportstart);
                 }
                 $(".div-" + selfx + "-" + selfy).css({ 'background': '#007bff', "background-image": "url('img/player.png')" });
