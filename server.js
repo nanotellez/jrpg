@@ -1,13 +1,21 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
+const session = require('express-session');
+
+app.use(session({
+    secret: 'thisisabadsecretpassword',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}))
 
 // http server required for seocket
 const http = require ('http');
 const server = http.Server(app);
 
-// configure body-parser to read JSON
-app.use(bodyParser.json());
+//changed from JSON back to regular stuff so we can read the character selection info
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const path = require("path");
 app.use(express.static(path.join(__dirname + "/static")));

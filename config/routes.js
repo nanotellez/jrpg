@@ -24,6 +24,7 @@ module.exports = function(app){
     // World Map
     app.get('/', controller.intro)
     app.get('/select', controller.selection)
+    app.post('/world', controller.setPlayer)
     app.get('/world', controller.world)
     app.get('/combat', controller.combat)
 

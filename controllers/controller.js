@@ -68,6 +68,7 @@ module.exports = {
     world: (req,res) => {
         context = {
             gridSize: 50,
+            player: req.session.player
         }
         res.render('worldMap', context);
     },
@@ -79,5 +80,12 @@ module.exports = {
     },
     intro: (req,res) => {
         res.render('intro');
+    },
+
+    setPlayer: (req,res) => {
+        req.session.player={};
+        req.session.player.name=req.body.name;
+        req.session.player.characterId=req.body.characterId;
+        res.redirect('/world')
     }
 }

@@ -4,7 +4,7 @@ $(document).ready(function () {
     var socket = io();
 
     if (newSession) {
-        var userhandle = prompt("Please enter a chat room name", "Player1");
+        var userhandle = $('#chathistory').attr("playername");
         if (userhandle != null) {
             socket.emit('announceentry', { handle: userhandle });
         }
