@@ -78,10 +78,10 @@ function enterCombat() {
         var combat = new Audio("./media/combatlaunch.mp3") ;
         combat.play();
         myVar = setTimeout(function(){
-            $("body").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+            $("body").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(1000);
             myVar = setTimeout(function(){
                 location.href = '/combat';
-            }, 2000);
+            }, 3000);
         }, 100);
     }, 100);
 }

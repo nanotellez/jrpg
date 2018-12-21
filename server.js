@@ -38,10 +38,10 @@ hash[5] = { 'id': 5, 'x': Math.floor(Math.random() * maxcoord), 'y': Math.floor(
 var mobSize = 6; // number of monsters
 
 function calcMobMove(mob) {
-    console.log ("calcMob for monster ", mob.id, (worldmoves % 2))
     if ((worldmoves % 2)==0){ // only move every other time so players can catch you
         return;
     }
+
     dir = Math.floor(Math.random() * 4);
 
     switch (dir) {
@@ -86,9 +86,7 @@ io.on('connection', function (socket) {
     socket.on('playermove', function (data) {
         worldmoves++;
         for (let m=0; m<mobSize; m++){
-            console.log("========================================")
             calcMobMove(hash[m]);
-            console.log("monster: ", m)
         }
         hash[thisid] = { 'id': thisid, 'x': data.x, 'y': data.y, 'type': 1 };
         io.emit('updategrid', { hash: hash });
@@ -103,19 +101,19 @@ io.on('connection', function (socket) {
     socket.on('announceentry', function (data) {
         console.log("announceentry");
         sockhandle = data.handle;
-        chatlog = chatlog + "<p>" + data.handle + " has entered the room."
+        chatlog = chatlog + "<p>" + data.handle + " has entered the realm."
         io.emit('updatechatlog', { log: chatlog });
     });
 
     socket.on('newpost', function (data) {
         console.log("newpost");
-        chatlog = chatlog + "<p>" + sockhandle + " says: " + data.msg;
+        chatlog = "<p>" + sockhandle + " says: " + data.msg + "</p>" + chatlog;
         io.emit('updatechatlog', { log: chatlog });
     });
 
     socket.on('disconnect', function () {
         console.log("disconnect");
-        chatlog = chatlog + "<p>" + sockhandle + " has left the room.";
+        chatlog = chatlog + "<p>" + sockhandle + " has exited the realm.";
         io.emit('updatechatlog', { log: chatlog });
     });
     // ***************************************************
