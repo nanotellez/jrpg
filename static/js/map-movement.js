@@ -133,10 +133,10 @@ $(document).ready(function () {
                     }
                 }
             }
-            console.log('selfx: ' + selfx);
-            console.log('selfy: ' + selfy);
-            console.log('curx: ' + curx);
-            console.log('cury: ' + cury);
+            // console.log('selfx: ' + selfx);
+            // console.log('selfy: ' + selfy);
+            // console.log('curx: ' + curx);
+            // console.log('cury: ' + cury);
             if (selfx == curx && selfy == cury) {
                 (data.hash[idkeys[subject]].type == 1) ? console.log(">>> player collision <<<") : enterCombat();
             }
@@ -161,13 +161,11 @@ $(document).ready(function () {
     });
 
     $(document).keyup(function (key) {
-        console.log(key.which)
         switch (key.which) {
             case 38: //UP
                 move = moveUp();
                 socket.emit('playermove', move);
                 break;
-
             case 39: //RIGHT
                 move = moveRight();
                 socket.emit('playermove', move);
@@ -182,5 +180,4 @@ $(document).ready(function () {
                 break;
         }
     });
-
 });
