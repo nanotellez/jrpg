@@ -65,7 +65,7 @@
                         <br>&nbsp;
                     </div>
                     <div id='pstatsdiv' class='col-xl-6 col-lg-6 col-md-6 col-sm-6 border border-light rounded d-flex justify-content-center'>
-                        <button id='pfight' class='btn btn-danger actionbutton combattext' onclick="playerattack()">FIGHT</button>|<button id='prun' class='btn btn-info actionbutton combattext' onclick="playerretreat()">RUN</button>
+                        <button id='pfight' class='btn btn-danger actionbutton combattext' onclick="attackround()">FIGHT</button>|<button id='prun' class='btn btn-info actionbutton combattext' onclick="playerretreat()">RUN</button>
                     </div>
                 </div>
                 <div class="row">
@@ -90,9 +90,11 @@
     </div>
 </body>
 <script>
-    function playerattack(){
+    var monsterDefeated = false;
+    function attackround(){
         var audio = new Audio("./media/sword.mp3") ;
         var monsterhealth = parseInt($("#monsterprog").val());
+        var playerhealth = parseInt($("#playerprog").val());
 
         myVar = setTimeout(function(){
             $("#pfight").attr("disabled","disabled");
@@ -102,17 +104,40 @@
 
         myVar = setTimeout(function(){
             $("#imgmonster").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-            console.log('FIGHT!')
             audio.play();
-            $("#mlogdiv").text('MONSTER TAKES 3 DAMAGE');
-            monsterhealth-=3;
+            let dmg = calcDamage(3,5);
+
+            $("#mlogdiv").text('MONSTER TAKES ' + dmg + ' DAMAGE');
+            monsterhealth-=dmg;
             $("#monsterprog").val(monsterhealth);
-            console.log(monsterhealth);
+
             clearLogs();
-            if(monsterhealth < 0) {
+
+            if(monsterhealth < 1) {
+                monsterDefeated = true;
                 var pageplayer = document.getElementById("pageaudio");
                 pageplayer.pause();
                 endCombat();
+            } else {
+                myVar = setTimeout(function(){
+                    $("#pfight").attr("disabled","disabled");
+                    $("#prun").attr("disabled","disabled");
+                    $("#mlogdiv").text('MONSTER ATTACKS');
+                    myVar = setTimeout(function(){
+                        $("#imgplayer").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                        audio.play();
+                        let dmg = calcDamage(1,3);
+
+                        $("#plogdiv").text('PLAYER TAKES ' + dmg + ' DAMAGE');
+                        playerhealth-=dmg;
+                        $("#playerprog").val(playerhealth);
+                        clearLogs();
+                    }, 3000);
+
+
+                }, 3000);
+
+
             }
         }, 3000);
     }
@@ -133,8 +158,10 @@
         myVar = setTimeout(function(){
             $("#mlogdiv").html('&nbsp;');
             $("#plogdiv").html('&nbsp;');
-            $("#pfight").removeAttr("disabled");
-            $("#prun").removeAttr("disabled");
+            if (!monsterDefeated) {
+                $("#pfight").removeAttr("disabled");
+                $("#prun").removeAttr("disabled");
+            }
         }, 3000);
     }
 
@@ -145,14 +172,20 @@
             audio.play();
         }, 100);
         myVar = setTimeout(function(){
+            $("#pfight").attr("disabled","disabled");
+            $("#prun").attr("disabled","disabled");
             $("#divExit").removeClass('invisible');
-        }, 3000);
+        }, 5000);
     }
 
     function exitCombatPage() {
         myVar = setTimeout(function(){
             location.href = '/world';
         }, 3000);
+    }
+
+    function calcDamage(min, max) {
+        return Math.floor((Math.random() * max) + min);
     }
 
 </script>

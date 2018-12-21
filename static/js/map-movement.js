@@ -18,19 +18,23 @@ function drawViewport(old, newv ) {
         $(".div-" + x + "-" + newv.y).addClass('view-t');
         $(".div-" + x + "-" + (newv.y + 9)).addClass('view-b');
     }
+
     for (let y = newv.y; y < newv.y + 10; y++) {
         $(".div-" + newv.x + "-" + y).addClass('view-l');
         $(".div-" + (newv.x + 9) + "-" + y).addClass('view-r');
     }
+
     // remove old viewport from world map
     for (let x = old.x; x < old.x + 10; x++) {
         $(".div-" + x + "-" + old.y).removeClass('view-t');
         $(".div-" + x + "-" + (old.y + 9)).removeClass('view-b');
     }
+
     for (let y = old.y; y < old.y + 10; y++) {
         $(".div-" + old.x + "-" + y).removeClass('view-l');
         $(".div-" + (old.x + 9) + "-" + y).removeClass('view-r');
     }
+
     // render viewport on current map
     $("#current-map").html("");
     for (let y = newv.y; y < newv.y + 10; y++) {
@@ -74,10 +78,10 @@ function enterCombat() {
         var combat = new Audio("./media/combatlaunch.mp3") ;
         combat.play();
         myVar = setTimeout(function(){
-            $("body").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+            $("body").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(1000);
             myVar = setTimeout(function(){
                 location.href = '/combat';
-            }, 2000);
+            }, 3000);
         }, 100);
     }, 100);
 }
@@ -115,6 +119,7 @@ $(document).ready(function () {
                 if (data.hash[idkeys[subject]].type == 1) {
                     $(".div-" + curx + "-" + cury).css({ 'background': 'gray', "background-image": "url('img/other.png')" });
                 } else if ((data.hash[idkeys[subject]].type < 0)) {
+                    console.log("subject::type", subject, data.hash[idkeys[subject]].type);
                     switch (data.hash[idkeys[subject]].type) {
                         case -1: // orc
                             $(".div-" + curx + "-"  + cury).css({ 'background': 'red', "background-image": "url('img/orc-head.png')" });
@@ -128,10 +133,10 @@ $(document).ready(function () {
                     }
                 }
             }
-            console.log('selfx: ' + selfx);
-            console.log('selfy: ' + selfy);
-            console.log('curx: ' + curx);
-            console.log('cury: ' + cury);
+            // console.log('selfx: ' + selfx);
+            // console.log('selfy: ' + selfy);
+            // console.log('curx: ' + curx);
+            // console.log('cury: ' + cury);
             if (selfx == curx && selfy == cury) {
                 (data.hash[idkeys[subject]].type == 1) ? console.log(">>> player collision <<<") : enterCombat();
             }
@@ -156,13 +161,11 @@ $(document).ready(function () {
     });
 
     $(document).keyup(function (key) {
-        console.log(key.which)
         switch (key.which) {
             case 38: //UP
                 move = moveUp();
                 socket.emit('playermove', move);
                 break;
-
             case 39: //RIGHT
                 move = moveRight();
                 socket.emit('playermove', move);
@@ -177,5 +180,4 @@ $(document).ready(function () {
                 break;
         }
     });
-
 });
